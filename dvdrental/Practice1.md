@@ -55,6 +55,44 @@
 
 # Exercise: Group By
 
+1. Does the average replacement cost of a film differ by rating?
+
+`select avg(replacement_cost) from film group by rating;`
+
+2. Which store (store_id) has the most customers whose first name starts with M?
+
+`select store_id, count(distinct customer_id) from customer where first_name like 'M%' group by store_id`
+
+3. Challenge: Are there any customers with the same last name?
+
+`SELECT last_name, count(*) FROM customer GROUP BY last_name HAVING count(*) > 1;`
+
+# Exercise: Functions
+
+1. What is the average rental rate of films? Can you round the result to 2 decimal places?
+
+`select avg(rental_rate) from film;`
+
+2. Challenge: What is the average time that people have rentals before returning? Hint: the output you'll get may include a number of hours > 24. You can use the function justify_interval on the result to get output that looks more like you might expect.
+
+`select justify_interval(avg(return_date - rental_date)) from rental ;`
+
+3. Challenge 2: Select the 10 actors who have the longest names (first and last name combined).
+
+`select concat(first_name, last_name), length(concat(first_name, last_name)) from actor 
+order by length(concat(first_name, last_name)) desc;`
+
+# Exercise: Count, Group, and Order
+
+1. Which film (id) has the most actors? Which actor (id) is in the most films?
+
+
+`select film_id, (count(actor_id)) as count from film_actor group by film_id order by count desc limit 1;`
+
+`select actor_id, count(film_id) from film_actor group by actor_id order by count(film_id) desc limit 1 ;`
+
+
+
 
 
 
