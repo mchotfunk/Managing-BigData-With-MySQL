@@ -1,86 +1,30 @@
-# Subqueries
+Exercise: Subqueries
+What films are actors with ids 129 and 195 in together?
 
-Subqueries will execute first, and then the result is used the broader query.
+'''
+select film_id from 
 
-```
-select title, rental_rate from film  
-where rental_rate < (select avg(rental_rate) from film)  
-order by rental_rate desc;
-```
-```
-select * from customer
-where address_id in 
-(select address_id from address where postal_code = '52137')
-```
-
-Note: Subquery must have alias 
-
-```
-select count(customer_id) as num_customer from
 (
-SELECT customer_id, count(*) 
- FROM rental GROUP BY customer_id
- HAVING count(*) > 30 
-	) as table1 ;
- ```
- 
-# Joining
 
-**Inner JOIN**
+select * from film_actor where actor_id in('129','195')
 
-Inner join returns the results in both tables
+) as table1;
+;;;
 
-```
-select * from customer inner join address
-on customer.address_id = address.address_id;
-```
-equals to:
+Challenge: How many actors are in more films than actor id 47? Hint: this takes 2 subqueries (one nested in the other). Work inside out: 1) how many films is actor 47 in; 2) which actors are in more films than this? 3) Count those actors.
 
-```
-select * from customer, address
-where customer.address_id = address.address_id;`
-```
+Exercise: Joining Customers, Payments, and Staff
+Join the customer and payment tables together with an inner join; select customer id, name, amount, and date and order by customer id. Then join the staff table to them as well to add the staff's name.
 
-with conditions:
+Exercise: Joining for Better Addresses
+Create a list of addresses that includes the name of the city instead of an ID number and the name of the country as well.
 
-```
-select * from customer, address
-where customer.address_id = address.address_id
-and postal_code= '52137';
-```
+Exercise: Joining and Grouping
+Repeating an exercise from Part 1, but adding in information from additional tables: Which film (by title) has the most actors? Which actor (by name) is in the most films?
 
-**Table names and aliases**
+Challenge: Which two actors have been in the most films together? Hint: You can join a table to itself by including it twice with different aliases. Hint 2: Try writing the query first to find the answer in terms of actor ids (not names); then for a super challenge (it takes a complicated query), rewrite it to get the actor names instead of the IDs. Hint 3: make sure not to count pairs twice (a in the movie with b and b in the movie with a) and avoid counting cases of an actor being in a movie with themselves.
 
-Note: you need to specify the table.address_id to avoid ambiguous
-```
-select first_name, last_name, customer.address_id, postal_code 
-from customer, address
-where customer.address_id = address.address_id;
-```
+Exercise: Joining and Grouping 2
+Get a list of the names of customers who have spent more than $150, along with their total spending.
 
-Makes the reference easier: make alias for tables
-Note: the "as" can be dropped
-
-```
-select first_name, last_name, c.address_id, postal_code
-from customer as c, address as a
-where c.address_id= a.address_id;
-```
-
-**Joining more than 2 tables**
-
-```
-select title, first_name, last_name
-from film f, film_actor fa, actor a
-where f.film_id=fa.film_id and fa.actor_id = a.actor_id;
-```
-
-
-**Left Join**
-
-```
-SELECT f.film_id, title, inventory_id, store_id 
-FROM film f LEFT JOIN inventory i
-ON f.film_id=i.film_id
-where i.film_id is null;
-```
+Who is the customer with the highest average payment amount?
