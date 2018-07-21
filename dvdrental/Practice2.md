@@ -65,8 +65,36 @@ ci.country_id=co.country_id;
 Exercise: Joining and Grouping
 Repeating an exercise from Part 1, but adding in information from additional tables: Which film (by title) has the most actors? Which actor (by name) is in the most films?
 
+```
+Select first_name, count(title)as count
+from 
+
+(
+	
+Select title, first_name, last_name, fa.actor_id
+from film f, film_actor fa, actor a
+where f.film_id= fa.film_id 
+and fa.actor_id= a.actor_id
+	
+) foo
+group by 
+order by count desc;
+```
 
 
+```
+Select title, count(actor_id)as count
+from 
+(
+Select title, first_name, last_name, fa.actor_id
+from film f, film_actor fa, actor a
+where f.film_id= fa.film_id 
+and fa.actor_id= a.actor_id
+
+) foo
+group by title
+order by count desc;
+```
 Challenge: Which two actors have been in the most films together? Hint: You can join a table to itself by including it twice with different aliases. Hint 2: Try writing the query first to find the answer in terms of actor ids (not names); then for a super challenge (it takes a complicated query), rewrite it to get the actor names instead of the IDs. Hint 3: make sure not to count pairs twice (a in the movie with b and b in the movie with a) and avoid counting cases of an actor being in a movie with themselves.
 
 Exercise: Joining and Grouping 2
