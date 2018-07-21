@@ -13,6 +13,24 @@ select * from film_actor where actor_id in('129','195')
 
 Challenge: How many actors are in more films than actor id 47? Hint: this takes 2 subqueries (one nested in the other). Work inside out: 1) how many films is actor 47 in; 2) which actors are in more films than this? 3) Count those actors.
 
+
+```
+Select count(*) from
+
+(
+
+Select actor_id , count(*) from film_actor 
+group by actor_id
+having count(*)>
+(
+select count(*) from film_actor 
+where actor_id='47')
+	
+	) foo
+;
+
+```
+
 Exercise: Joining Customers, Payments, and Staff
 Join the customer and payment tables together with an inner join; select customer id, name, amount, and date and order by customer id. Then join the staff table to them as well to add the staff's name.
 
