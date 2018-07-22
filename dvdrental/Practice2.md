@@ -77,7 +77,7 @@ where f.film_id= fa.film_id
 and fa.actor_id= a.actor_id
 	
 ) foo
-group by 
+group by first_name
 order by count desc;
 ```
 
@@ -100,4 +100,25 @@ Challenge: Which two actors have been in the most films together? Hint: You can 
 Exercise: Joining and Grouping 2
 Get a list of the names of customers who have spent more than $150, along with their total spending.
 
+```
+Select first_name, sum
+from(
+
+Select first_name, sum(amount) as sum
+from 
+customer c, payment p
+where c.customer_id =p.customer_id
+group by first_name
+) f
+where sum>150;
+```
+
 Who is the customer with the highest average payment amount?
+```
+Select first_name, avg(amount) as avg
+from 
+customer c, payment p
+where c.customer_id =p.customer_id
+group by first_name
+order by avg desc
+```
