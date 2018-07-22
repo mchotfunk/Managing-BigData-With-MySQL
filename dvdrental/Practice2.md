@@ -97,7 +97,44 @@ order by count desc;
 ```
 
 
-**Challenge: Which two actors have been in the most films together? Hint: You can join a table to itself by including it twice with different aliases. Hint 2: Try writing the query first to find the answer in terms of actor ids (not names); then for a super challenge (it takes a complicated query), rewrite it to get the actor names instead of the IDs. Hint 3: make sure not to count pairs twice (a in the movie with b and b in the movie with a) and avoid counting cases of an actor being in a movie with themselves.
+**Challenge: Which two actors have been in the most films together? Hint: You can join a table to itself by including it twice with different aliases. Hint 2: Try writing the query first to find the answer in terms of actor ids (not names); then for a super challenge (it takes a complicated query), rewrite it to get the actor names instead of the IDs. Hint 3: make sure not to count pairs twice (a in the movie with b and b in the movie with a) and avoid counting cases of an actor being in a movie with themselves.**
+
+
+```
+select a.actor_id, b.actor_id, count(*)
+from film_actor a, film_actor b
+where a.film_id=b.film_id
+and
+a.actor_id != b.actor_id
+group by a.actor_id, b.actor_id
+order by count(*) desc;
+```
+
+Super Challenge:
+
+```
+Select a1.first_name as first_name1, a2.first_name as first_name2,
+actor1, actor2, count
+from actor a1, 
+actor a2,
+(      
+Select fa1.actor_id as Actor1, fa2.actor_id as Actor2, count(*) as count
+from film_actor fa1, film_actor fa2
+where 
+fa1.film_id=fa2.film_id
+and
+fa1.actor_id != fa2.actor_id
+group by fa1.actor_id, fa2.actor_id
+order by actor1
+
+) table1
+
+where a1.actor_id = table1.actor1
+and
+a2.actor_id = table1.actor2
+Order by count desc;
+
+```
 
 Exercise: Joining and Grouping 2
 Get a list of the names of customers who have spent more than $150, along with their total spending.
