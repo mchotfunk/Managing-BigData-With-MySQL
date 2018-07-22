@@ -1,5 +1,4 @@
-
-• SELECT - extracts data from a database
+# SELECT - extracts data from a database
 	• * = select all
 	• Distinct = no duplicate
 	• Select 
@@ -48,7 +47,7 @@
 		ORDER BY length(first_name || last_name)  DESC
 		LIMIT 10;
     
-• SQL ALIASES
+ # SQL ALIASES
 	• Functions: Give column or table a temporary name.
 	• Column: Select Product_name as product
 	• Table: 
@@ -57,7 +56,7 @@
 	WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID;
   
   
-• SQL JOINS
+ # SQL JOINS
 	• Functions: Combining row for two or more table, on a related column between them.
 	• Inner Join: (Join the two overlap area: matching values in both tables)
 	SELECT o.OrderID, c.CustomerName, o.OrderDate
@@ -73,7 +72,8 @@
 	• RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table
 	• FULL (OUTER) JOIN: Return all records when there is a match in either left or right table
 	
-• Subqueries
+
+# Subqueries
 	• Non-correlated: Value are passed from inner to the outer. It's a stand-alone query. 
 		○ E.g. 
 		select Job_Title, avg(Salary) as MeanSalary
@@ -107,14 +107,4 @@
 			 where not exists (select * from imcdata.Order_Fact 
 			 where Sales.Employee_ID=Order_Fact.Employee_ID);
 			--> Find sales employees at Sales but not in Order_Fact
-
-
-• INSERT INTO - inserts new data into a database
-• CREATE DATABASE - creates a new database
-• ALTER DATABASE - modifies a database
-• CREATE TABLE - creates a new table
-• ALTER TABLE - modifies a table
-• DROP TABLE - deletes a table
-• CREATE INDEX - creates an index (search key)
-• DROP INDEX - deletes an index
 
