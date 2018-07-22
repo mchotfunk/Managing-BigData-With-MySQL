@@ -1,7 +1,7 @@
 Exercise: Subqueries
 What films are actors with ids 129 and 195 in together?
 
-'''
+```
 select film_id from 
 
 (
@@ -9,7 +9,7 @@ select film_id from
 select * from film_actor where actor_id in('129','195')
 
 ) as table1;
-;;;
+```
 
 Challenge: How many actors are in more films than actor id 47? Hint: this takes 2 subqueries (one nested in the other). Work inside out: 1) how many films is actor 47 in; 2) which actors are in more films than this? 3) Count those actors.
 
@@ -95,7 +95,9 @@ and fa.actor_id= a.actor_id
 group by title
 order by count desc;
 ```
-Challenge: Which two actors have been in the most films together? Hint: You can join a table to itself by including it twice with different aliases. Hint 2: Try writing the query first to find the answer in terms of actor ids (not names); then for a super challenge (it takes a complicated query), rewrite it to get the actor names instead of the IDs. Hint 3: make sure not to count pairs twice (a in the movie with b and b in the movie with a) and avoid counting cases of an actor being in a movie with themselves.
+
+
+**Challenge: Which two actors have been in the most films together? Hint: You can join a table to itself by including it twice with different aliases. Hint 2: Try writing the query first to find the answer in terms of actor ids (not names); then for a super challenge (it takes a complicated query), rewrite it to get the actor names instead of the IDs. Hint 3: make sure not to count pairs twice (a in the movie with b and b in the movie with a) and avoid counting cases of an actor being in a movie with themselves.
 
 Exercise: Joining and Grouping 2
 Get a list of the names of customers who have spent more than $150, along with their total spending.
