@@ -1,4 +1,5 @@
 **Exercise: Subqueries**
+
 What films are actors with ids 129 and 195 in together?
 
 
@@ -34,6 +35,7 @@ where actor_id='47')
 ```
 
 **Exercise: Joining Customers, Payments, and Staff**
+
 Join the customer and payment tables together with an inner join; select customer id, name, amount, and date and order by customer id. Then join the staff table to them as well to add the staff's name.
 
 ```
@@ -52,6 +54,7 @@ order by customer_id;
 
 
 **Exercise: Joining for Better Addresses**
+
 Create a list of addresses that includes the name of the city instead of an ID number and the name of the country as well.
 
 ```
@@ -65,6 +68,7 @@ ci.country_id=co.country_id;
 
 
 **Exercise: Joining and Grouping**
+
 Repeating an exercise from Part 1, but adding in information from additional tables: Which film (by title) has the most actors? Which actor (by name) is in the most films?
 
 ```
@@ -162,7 +166,8 @@ Order by count desc;
 
 ```
 
-Exercise: Joining and Grouping 2
+**Exercise: Joining and Grouping 2**
+
 Get a list of the names of customers who have spent more than $150, along with their total spending.
 
 Breakdown:
