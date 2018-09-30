@@ -1,4 +1,4 @@
-SQL Practice Including:
+**Jupyter Notebooks recording practices for MySQL**
 
-1. Northwestern Bootcamp 
-2. Managing Bigdata with MySQL
+
+***Source: Managing BigData with MySQL by Duke University***
